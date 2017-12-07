@@ -1,6 +1,6 @@
 # Manga Recommender
-Orbital Project, written mainly in PHP
+Orbital Project CP2106, written mainly in PHP
 
-Demonstration video: 
+[Demonstration video](https://drive.google.com/file/d/0B-JZMBKPVbDWQ0d2YWNiZjFtSHc/view?usp=sharing)
 
 ![Poster](docs/poster.jpg?raw=true "Documentation")
