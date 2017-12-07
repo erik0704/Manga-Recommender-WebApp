@@ -1,0 +1,331 @@
+﻿<!DOCTYPE html>
+<html>
+<title>Manga Preference Quiz</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700">
+<link rel="stylesheet" href="stylesheet.css">
+
+<style>
+h4 {
+    font-family: "Wildwords", "Manga Temple", "Anime Ace 2", cursive, sans-serif;
+}
+h3 { 
+    text-align: center;
+    margin: 7%;
+}
+#quiz {
+    height: 640px;
+    width: 1000px;
+}
+.question{
+    height: 540px;
+    max-width: 1000px;
+    border-radius: 10px;
+    background-color: #d3ddd3;
+    border: 1px solid #d3ddd3;
+    display: none;
+}
+.choice {
+    width: 80%;
+    margin: 5px 100px;
+    background-color: #fdd1b7;
+}
+.total {
+  height:  45px;
+  width: 733px; /* Full width */
+  background-color: #ddd; /* Grey background */
+  box-sizing:border-box;
+  margin: 10px 10px 0 10px;
+}
+.progressText {
+  text-align: right; /* Right-align text */
+  padding-right: 20px; /* Add some right padding */
+  line-height: 40px; /* Set the line-height to center the text inside the skill bar, and to expand the height of the container */
+  color: white; /* White text color */
+}
+.progress {
+  height: 45px;
+  width: 0%; 
+  background-color: #062a1f;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 20% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%; /* Could be more or less, depending on screen size */
+    text-align: center;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+input {
+  width: 80%;
+  margin: 10px 100px;
+  text-align: center;
+}
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
+
+<body class="w3-display-container w3-sand" onload='displayModal("profileModal")'>
+<!-- Links (sit on top) -->
+<div class="w3-top">
+  <div class="w3-row w3-padding w3-black">
+    <div class="w3-col s2">
+      <a href="index.html" class="w3-button w3-block w3-black">HOME</a>
+    </div>
+    <div class="w3-col s1" style="color:black">x</div>
+    <div class="w3-col s6" align="middle"><img src="Images/alt_logo.png" alt="logo" style="height:38px;"></div>
+    <div class="w3-col s1" style="color:black">x</div>
+    <div class="w3-col s1">
+      <a href="#about" class="w3-button w3-block w3-black">SIGN UP</a>
+    </div>
+    <div class="w3-col s1">
+      <a href="#menu" class="w3-button w3-block w3-black">SIGN IN</a>
+    </div>
+  </div>
+</div>
+
+<!-- Add a background color and large text to the whole page -->
+<div class="w3-sand w3-large">
+
+  <!-- Quiz Container -->
+  <div class="w3-display-middle" id="quiz">
+    <h4>Manga Preference Quiz</h4>
+    <div class="question" style="display:block" id="qn1">
+      <h3>What is your gender?</u></h3>
+      <button onclick="nextQn()" class="w3-button choice">Female</button>
+      <button onclick="nextQn()" class="w3-button choice">Male</button>
+      <button onclick="nextQn()" class="w3-button choice">Others</button>
+    </div>
+    <div class="question" id="qn2">
+      <h3>What is your age?</u></h3>
+      <button onclick="nextQn()" class="w3-button choice">10 or below</button>
+      <button onclick="nextQn()" class="w3-button choice">11-20</button>
+      <button onclick="nextQn()" class="w3-button choice">21-30</button>
+      <button onclick="nextQn()" class="w3-button choice">31-40</button>
+      <button onclick="nextQn()" class="w3-button choice">40+</button>
+    </div>
+    <div class="question" id="qn3">
+      <h3>In a typical week, about how many days do you spend at least an hour reading a manga?</u></h3>
+      <button onclick="nextQn()" class="w3-button choice">0-1 day</button>
+      <button onclick="nextQn()" class="w3-button choice">2-3 days</button>
+      <button onclick="nextQn()" class="w3-button choice">4-5 days</button>
+      <button onclick="nextQn()" class="w3-button choice">6-7 days</button>
+    </div>
+    <div class="question" id="qn4">
+      <h3>Would you consider yourself to be a...</u></h3>
+      <button onclick="nextQn()" class="w3-button choice">Newbie manga reader <br /><sub>i.e. you just started reading 0-2 series</sub></button>
+      <button onclick="nextQn()" class="w3-button choice">Casual manga reader <br /><sub>i.e. you dabble in mangas, but short sessions or infrequently</sub></button>
+      <button onclick="nextQn()" class="w3-button choice">Softcore manga reader <br /><sub>i.e. you've read quite a number of series (20+), and can sit still for more than an hour, only reading manga</sub></button>
+      <button onclick="nextQn()" class="w3-button choice">Hardcore manga reader <br /><sub>i.e. you've read a lot of mangas (50+), actively follow a few ongoing series whenever a new chapter is out, maybe even look for doujin</sub></button>
+    </div>
+    <div class="question" id="qn5">
+      <h3>What are your top 3 all-time favourite mangas? (optional)</u></h3>
+      <input type="text">
+      <input type="text">
+      <input type="text">
+    </div>
+    <div class="question" id="qn6">
+      <h3>What are the 3 most recent mangas that you enjoyed? (optional)</u></h3>
+      <input type="text">
+      <input type="text">
+      <input type="text">
+    </div>
+    <div class="question" id="qn7">
+      <h3>How do you normally read manga?</u></h3>
+      <button onclick="nextQn(); displayModal('factorsModal')" class="w3-button choice">Buying hard copies</button>
+      <button onclick="nextQn(); displayModal('factorsModal')" class="w3-button choice">Using phones/tablets</button>
+      <button onclick="nextQn(); displayModal('factorsModal')" class="w3-button choice">Using desktop/laptop</button>
+    </div>    
+    <div class="question" id="qn8">
+      <h3>Characters having feelings for each other</u></h3>
+      <button onclick="nextQn()" class="w3-button choice">Not at all important</button>
+      <button onclick="nextQn()" class="w3-button choice">Slightly important</button>
+      <button onclick="nextQn()" class="w3-button choice">Somewhat important</button>
+      <button onclick="nextQn()" class="w3-button choice">Very important</button>
+      <button onclick="nextQn()" class="w3-button choice">Extremely important</button>
+    </div>
+    <div class="question" id="qn9">
+      <h3>Having a driving force that keeps the plot going</u></h3>
+      <button onclick="nextQn()" class="w3-button choice">Not at all important</button>
+      <button onclick="nextQn()" class="w3-button choice">Slightly important</button>
+      <button onclick="nextQn()" class="w3-button choice">Somewhat important</button>
+      <button onclick="nextQn()" class="w3-button choice">Very important</button>
+      <button onclick="nextQn()" class="w3-button choice">Extremely important</button>
+    </div>
+    <div class="question" id="qn10">
+      <h3>Characters with interesting back-stories and personalities</u></h3>
+      <button onclick="nextQn()" class="w3-button choice">Not at all important</button>
+      <button onclick="nextQn()" class="w3-button choice">Slightly important</button>
+      <button onclick="nextQn()" class="w3-button choice">Somewhat important</button>
+      <button onclick="nextQn()" class="w3-button choice">Very important</button>
+      <button onclick="nextQn()" class="w3-button choice">Extremely important</button>
+    </div>
+    <div class="question" id="qn11">
+      <h3>A realistic, down-to-earth settings and development</u></h3>
+      <button onclick="nextQn(); displayModal('scenariModal')" class="w3-button choice">Not at all important</button>
+      <button onclick="nextQn(); displayModal('scenariModal')" class="w3-button choice">Slightly important</button>
+      <button onclick="nextQn(); displayModal('scenariModal')" class="w3-button choice">Somewhat important</button>
+      <button onclick="nextQn(); displayModal('scenariModal')" class="w3-button choice">Very important</button>
+      <button onclick="nextQn(); displayModal('scenariModal')" class="w3-button choice">Extremely important</button>
+    </div>
+    <div class="question" id="qn12">
+      <h3>A beautiful girl/handsome guy suddenly falls from the sky at/in front of you</u></h3>
+      <button onclick="nextQn(); displayModal('miscellModal')" class="w3-button choice">Doesn't enjoy at all</button>
+      <button onclick="nextQn(); displayModal('miscellModal')" class="w3-button choice">Enjoy slightly</button>
+      <button onclick="nextQn(); displayModal('miscellModal')" class="w3-button choice">Enjoy somewhat</button>
+      <button onclick="nextQn(); displayModal('miscellModal')" class="w3-button choice">Enjoy a lot</button>
+      <button onclick="nextQn(); displayModal('miscellModal')" class="w3-button choice">Love it</button>
+    </div>
+    <div class="question" id="qn13">
+      <h3>When a character says “What is this feeling?”, what do you think that feeling is?</u></h3>
+      <button onclick="nextQn()" class="w3-button choice">A new power</button>
+      <button onclick="nextQn()" class="w3-button choice">Love/Jealousy</button>
+      <button onclick="nextQn()" class="w3-button choice">Boobs (lmao)</button>
+      <button onclick="nextQn()" class="w3-button choice">A omen for something bad is going to happen</button>
+      <button onclick="nextQn()" class="w3-button choice">Frustration over unsolved matter</button>
+    </div>
+    <div class="question" id="qn14">
+      <h3>Immortality for only oneself would be</u></h3>
+      <button onclick="nextQn()" class="w3-button choice">A curse</button>
+      <button onclick="nextQn()" class="w3-button choice">A blessing</button>
+      <button onclick="nextQn()" class="w3-button choice">Just an eternal life. Nothing important.</button>
+    </div>
+    <div class="question" id="qn15">
+      <h3>You awaken in a dying, unfamiliar world. You discover that you were summoned to be the savior. So you...</u></h3>
+      <button onclick="nextQn()" class="w3-button choice">Wait it out try to survive</button>
+      <button onclick="nextQn()" class="w3-button choice">Save the world alone</button>
+      <button onclick="nextQn()" class="w3-button choice">Gather a party to overcome the crisis</button>
+      <button onclick="nextQn()" class="w3-button choice">Try your best to return to your own world</button>
+      <button onclick="nextQn()" class="w3-button choice">Have as much fun as possible</button>
+    </div>
+
+
+
+    <!--Navigation bar -->
+    <div>
+      <button onclick="prevQn()" class="w3-button w3-orange w3-hover-red" style="width:120px">&laquo; Previous</button>
+      <div class="total" style="display:inline-block;"><div class="progress progressText" id="progress">0%</div></div>
+      <button onclick="nextQn()" class="w3-button w3-green w3-hover-teal" style="width:120px">Next &raquo;</button>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <div id="profileModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="profileClose">&times;</span>
+      <p>This part of the quiz will try to place you into the appropriate demographic</p>
+    </div>
+  </div>
+  <div id="factorsModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="factorsClose">&times;</span>
+      <p>Now we'll start to figure out what kind of manga you may like to read</p>
+      <p>First off, we will list a number of factors of a manga. Rate each factor based on how important you think it is for a good manga.</p>
+    </div>
+  </div>
+  <div id="scenariModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="scenariClose">&times;</span>
+      <p>Next, we will present a range of scenarios that happen in manga</p>
+      <p>Rate each scenario based on how much do/would you enjoy it.</p>
+    </div>
+  </div>
+  <div id="miscellModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="miscellClose">&times;</span>
+      <p>Lastly, we will ask a few miscellanous questions that are related to your manga interest</p>
+      <p>Choose answer for each question appropriately, as the answers are no longer uniform</p>
+    </div>
+  </div>
+
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-bottom w3-center w3-light-grey w3-large">
+  <p>Created by <em>Team Leorik</em></a></p>
+</footer>
+</body>
+</html>
+
+<script>
+var current = 1;
+var total = 15;
+var progressBar = document.getElementById("progress");
+function nextQn() {
+  if (current === total)
+    return;
+  var progValue = Math.round(current/total*100) + "%";
+  toggleDisplay(document.getElementById("qn" + current));
+  current++;
+  toggleDisplay(document.getElementById("qn" + current));
+  progressBar.innerHTML = progValue;
+  progressBar.style.width = progValue;
+}
+
+function prevQn() {
+  if (current === 1)
+    return;
+  var progValue = Math.round(current/total*100) + "%";
+  toggleDisplay(document.getElementById("qn" + current));
+  current--;
+  toggleDisplay(document.getElementById("qn" + current));
+  var progValue = Math.round(current/total*100) + "%";
+  var progressBar = document.getElementById("progress");
+  progressBar.innerHTML = progValue;
+  progressBar.style.width = progValue;
+}
+
+function toggleDisplay(elem) {
+    if (elem.style.display === 'block') {
+        elem.style.display = 'none';
+    } else {
+        elem.style.display = 'block';
+    }
+}
+
+var modal;
+var span;
+function displayModal(modalID) {
+  modal = document.getElementById(modalID);
+  span = document.getElementById(modalID.substr(0,7) + "Close");
+  modal.style.display = "block";
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+  window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+  }
+}
+</script>
