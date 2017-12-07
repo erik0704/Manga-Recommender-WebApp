@@ -1,8 +1,4 @@
-# Orbital-Manga-Recommender
-ifdef::env-github,env-browser[:relfileprefix: docs/]
-ifdef::env-github,env-browser[:outfilesuffix: .adoc]
+# Manga Recommender
 Orbital Project, written mainly in PHP
 
-ifdef::env-github[]
-image::docs/poster.jpg[width="600"]
-endif::[]
+![Poster](docs/poster.jpg?raw=true "Documentation")
