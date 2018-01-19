@@ -1,5 +1,5 @@
 # Manga Recommender
-Orbital Project CP2106, summer 2017. A website which recommends mangas to users based on their reading preferences; developed mainly in PHP, HTML and JavaScript. Approximately 7k LOC.
+Independent Software Development Project (Orbital) CP2106, summer 2017. A website which recommends mangas to users based on their reading preferences; developed mainly in PHP, SQL, HTML and JavaScript. Approximately 7k LOC.
 
 [Direct link to site](https://mangarecommender.000webhostapp.com/)
 
